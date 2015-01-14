@@ -1,0 +1,12 @@
+ 	 
+[Desktop Entry]
+Name=Gissue
+GenericName=Gissue
+Comment=Proves that we can use Vala and Gtk
+Categories=GTK;Utility;
+Exec=gissue
+Icon=application-default-icon
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=gissue
+X-GNOME-Keywords=gissue;
