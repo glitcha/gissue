@@ -2,30 +2,38 @@ using GLib;
 using Gtk;
 using Gee;
 
-class GissueApplication : Gtk.Application {
+namespace Gissue {
 
-	public const string NAME = "Gissue";
-	public const string PRGNAME = "gissue";
+	class GissueApplication : Granite.Application {
 
-	public GissueApplication(string[] args) {
+		public const string NAME = "Gissue";
+		public const string PRGNAME = "gissue";
 
-		// setup gtk
-		Gtk.init (ref args);
-		Gtk.Settings.get_default().set("gtk-application-prefer-dark-theme", true);
+		public GissueApplication() {
 
-		// load the main window
-		UIMain uimain = new UIMain();
-		uimain.show();
-		
-		// load the issues
-		ArrayList<GitHubAPIIssue> issues = GitHubAPI.get_issues();
-		foreach (GitHubAPIIssue issue in issues) {
-			uimain.add_item(issue.title);			
+			program_name = "Gissue";
+
+
 		}
-	
-		// run gtk
-		Gtk.main ();
-	}
 
+		protected override void activate () {
+			
+			// setup gtk
+			Gtk.Settings.get_default ().set("gtk-application-prefer-dark-theme", true);
 
-} 
+			// load the main window
+			UIMain uimain = new UIMain ();
+			uimain.show();
+			
+			// load the issues
+			ArrayList<GitHubAPIIssue> issues = GitHubAPI.get_issues ();
+			foreach (GitHubAPIIssue issue in issues) {
+				uimain.add_item (issue.title);			
+			}
+		
+			// run gtk
+			Gtk.main ();
+		}
+	} 
+
+}

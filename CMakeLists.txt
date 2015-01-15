@@ -21,13 +21,20 @@ set (VERSION_INFO "whats up world")
 find_package(PkgConfig)
 
 # now let's actually check for the required dependencies
-pkg_check_modules(DEPS REQUIRED gtk+-3.0)
-pkg_check_modules(SOUP REQUIRED libsoup-2.4)
+pkg_check_modules (DEPS REQUIRED
+    gobject-2.0
+    glib-2.0
+    gio-2.0
+    gee-1.0
+    gtk+-3.0>=3.11.6
+    granite
+    libsoup-2.4
+)
 pkg_check_modules(JSON REQUIRED json-glib-1.0>=0.14)
-pkg_check_modules(GEE REQUIRED gee-1.0)
-add_definitions(${DEPS_CFLAGS} ${SOUP_CFLAGS} ${JSON_CFLAGS} ${JSON_CFLAGS_OTHER} ${GEE_CFLAGS})
-link_libraries(${DEPS_LIBRARIES} ${SOUP_LIBRARIES} ${JSON_LIBRARIES} ${GEE_LIBRARIES})
-link_directories(${DEPS_LIBRARY_DIRS} ${SOUP_DIRS} ${JSON_DIRS} ${GEE_LIBRARY_DIRS})
+
+add_definitions(${DEPS_CFLAGS} ${JSON_CFLAGS} ${JSON_CFLAGS_OTHER} )
+link_libraries(${DEPS_LIBRARIES} ${JSON_LIBRARIES})
+link_directories(${DEPS_LIBRARY_DIRS} ${JSON_DIRS})
 
 # make sure we have vala
 find_package(Vala REQUIRED)
@@ -50,7 +57,8 @@ PACKAGES
     gtk+-3.0
     libsoup-2.4
     json-glib-1.0
-    gee-1.0
+    gee-0.8
+    granite
 )
 # tell cmake what to call the executable we just made
 add_executable(${EXEC_NAME} ${VALA_C})

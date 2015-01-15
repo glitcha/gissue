@@ -1,7 +1,10 @@
-class GitHubAPIIssue {
+namespace Gissue { 
 
-	public string url;
-	public int id;
-	public int number;
-	public string title;
+	class GitHubAPIIssue {
+
+		public string url;
+		public int id;
+		public int number;
+		public string title;
+	}
 }
