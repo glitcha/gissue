@@ -53,6 +53,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/GitHubAPIIssue.vala
     src/GissueApplication.vala
     src/ui/UIMain.vala
+    src/ui/UIIssueList.vala
+    src/ui/UIIssueRow.vala
 PACKAGES
     gtk+-3.0
     libsoup-2.4

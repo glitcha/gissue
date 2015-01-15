@@ -1,5 +1,6 @@
 using GLib;
 using Gtk;
+using Gee;
 
 namespace Gissue {
 
@@ -7,7 +8,7 @@ namespace Gissue {
 
 		public Gtk.Window window = new Gtk.Window ();
 		public Gtk.Paned paned;
-		public Gtk.ListBox issues_list;
+		public UIIssueList issues_list;
 		public Gtk.HeaderBar headerbar;
 		public Gtk.TextView textview;
 		public Granite.Widgets.ThinPaned tpaned;
@@ -20,9 +21,13 @@ namespace Gissue {
 			window.show_all ();
 		}
 
+		public void load_issues(ArrayList<GitHubAPIIssue> issues) {
+			issues_list.load (issues);
+		}
+
 		private void setup_issue_list() {
-			issues_list = new Gtk.ListBox();
-			paned.add1(issues_list);
+			issues_list = new UIIssueList ();
+			paned.add1 (issues_list);
 		}
 
 		private void setup_paned() {
@@ -56,10 +61,10 @@ namespace Gissue {
 			window.destroy.connect (Gtk.main_quit);
 		}
 
-		public void add_item(string text) {
-			issues_list.prepend(new Gtk.Label (text));
-			issues_list.show_all();
-		}
+		// public void add_item(string text) {
+		// 	issues_list.prepend(new Gtk.Label (text));
+		// 	issues_list.show_all();
+		// }
 
 		public void set_text(string text) {
 			textview.buffer.text = text;

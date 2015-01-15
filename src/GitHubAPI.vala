@@ -2,7 +2,7 @@ using Gee;
 
 namespace Gissue {
 
-	class GitHubAPI {
+	public class GitHubAPI {
 
 		public static ArrayList<GitHubAPIIssue> get_issues() {
 
@@ -12,8 +12,7 @@ namespace Gissue {
 
 			var session = new Soup.SessionSync ();
 			var message = new Soup.Message ("GET", url);
-			var outstr = "";
-
+			
 			message.request_headers.append("User-Agent", "gissue");
 			session.send_message (message);
 
@@ -23,9 +22,21 @@ namespace Gissue {
 			var root_object = parser.get_root ().get_array ();
 				 
 			foreach (var geonode in root_object.get_elements ()) {
+
 				var json_object = geonode.get_object();
+
 				GitHubAPIIssue issue = new GitHubAPIIssue();
-				issue.title = json_object.get_string_member("title");
+
+				//issue.id = 			int.parse (json_object.get_string_member("id"));
+				issue.title = 		json_object.get_string_member ("title");
+				issue.updated_at = 	json_object.get_string_member ("updated_at");
+				issue.created_at = 	json_object.get_string_member ("created_at");
+				issue.number = 		(int) json_object.get_int_member ("number");
+
+				//Granite.Services.Logger.notification ("test " + "yo " + json_object.get_string_member("id"));
+
+				//issue.comments = 	int.parse (json_object.get_string_member("comments"));
+
 				issues.add(issue);
 			}
 
