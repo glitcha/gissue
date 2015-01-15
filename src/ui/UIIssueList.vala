@@ -35,6 +35,7 @@ namespace Gissue {
 				row.load (issue);
 				issues_box.add (row);
 			}
+			
 			issues_box.show_all();
 			this.show_all();
 		}

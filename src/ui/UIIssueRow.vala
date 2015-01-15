@@ -16,7 +16,7 @@ namespace Gissue {
 			number_label.xalign = 0;
 			number_label.ellipsize = Pango.EllipsizeMode.END;
 
-			created_on_label = new Gtk.Label (this.issue.created_at);
+			created_on_label = new Gtk.Label (this.issue.get_created_at_formated());
             created_on_label.xalign = 0;
             created_on_label.opacity = 0.8;
             created_on_label.ellipsize = Pango.EllipsizeMode.END;

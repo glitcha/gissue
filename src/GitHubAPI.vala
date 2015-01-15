@@ -1,10 +1,12 @@
 using Gee;
+using GLib;
 
 namespace Gissue {
 
 	public class GitHubAPI {
 
-		public static ArrayList<GitHubAPIIssue> get_issues() {
+		public static ArrayList<GitHubAPIIssue> get_issues() 
+		{
 
 			ArrayList<GitHubAPIIssue> issues = new ArrayList<GitHubAPIIssue> ();
 
@@ -27,20 +29,26 @@ namespace Gissue {
 
 				GitHubAPIIssue issue = new GitHubAPIIssue();
 
-				//issue.id = 			int.parse (json_object.get_string_member("id"));
+				issue.id = 			(int) json_object.get_int_member("id");
 				issue.title = 		json_object.get_string_member ("title");
 				issue.updated_at = 	json_object.get_string_member ("updated_at");
 				issue.created_at = 	json_object.get_string_member ("created_at");
 				issue.number = 		(int) json_object.get_int_member ("number");
 
-				//Granite.Services.Logger.notification ("test " + "yo " + json_object.get_string_member("id"));
-
-				//issue.comments = 	int.parse (json_object.get_string_member("comments"));
-
 				issues.add(issue);
 			}
 
 			return issues;
+		}
+
+		public static DateTime get_datetime_from_iso8601(string iso) 
+		{	
+			TimeVal timeval = TimeVal();
+			timeval.from_iso8601 (iso);
+			
+			//DateTime datetime = 
+
+			return new DateTime.from_timeval_utc (timeval);
 		}
 	}
 }

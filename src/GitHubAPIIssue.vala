@@ -1,4 +1,5 @@
 using Gee;
+using GLib; 
 
 namespace Gissue {
 
@@ -11,5 +12,12 @@ namespace Gissue {
 		public string created_at;
 		public string updated_at;
 		public int comments;
+
+		public string get_created_at_formated () {
+		
+			DateTime datetime = GitHubAPI.get_datetime_from_iso8601 (this.created_at);
+		
+			return datetime.format("%e %b %Y");
+		}
 	}
 }
