@@ -9,6 +9,7 @@ namespace Gissue {
 		public Gtk.Window window = new Gtk.Window ();
 		public Gtk.Paned paned;
 		public UIIssueList issues_list;
+		public UIIssueViewer issue_view;
 		public Gtk.HeaderBar headerbar;
 		public Gtk.TextView textview;
 		public Granite.Widgets.ThinPaned tpaned;
@@ -37,10 +38,9 @@ namespace Gissue {
 			tpaned.pack1 (sourcelist, true, true);
 			
 			paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
-			textview = new Gtk.TextView ();
-			textview.buffer.text = "";
-			paned.add2 (textview);
-
+			issue_view = new UIIssueViewer ();
+			
+			paned.add2 (issue_view);
 			tpaned.pack2 (paned, true, true);
 			
 			window.add (tpaned);

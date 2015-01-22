@@ -25,10 +25,11 @@ pkg_check_modules (DEPS REQUIRED
     gobject-2.0
     glib-2.0
     gio-2.0
-    gee-1.0
+    gee-0.8
     gtk+-3.0>=3.11.6
     granite
     libsoup-2.4
+    webkitgtk-3.0>=1.4.3
 )
 pkg_check_modules(JSON REQUIRED json-glib-1.0>=0.14)
 
@@ -55,12 +56,16 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/ui/UIMain.vala
     src/ui/UIIssueList.vala
     src/ui/UIIssueRow.vala
+    src/ui/UIIssueViewer.vala
 PACKAGES
     gtk+-3.0
     libsoup-2.4
     json-glib-1.0
     gee-0.8
     granite
+    webkitgtk-3.0
+OPTIONS
+    --vapidir=${CMAKE_SOURCE_DIR}/vapi
 )
 # tell cmake what to call the executable we just made
 add_executable(${EXEC_NAME} ${VALA_C})
