@@ -4,6 +4,26 @@ project (gissue)
 # the oldest stable cmake version we support
 cmake_minimum_required (VERSION 2.6)
 
+# build the markdown lib
+include(ExternalProject)
+set(DISCOUNT_DEP_PATH ${CMAKE_SOURCE_DIR}/deps/discount)
+set(DISCOUNT_LIB_PATH ${CMAKE_BINARY_DIR}/libmarkdown.a)
+set(DISCOUNT_INCLUDE_PATH ${DISCOUNT_DEP_PATH})
+
+ExternalProject_Add(discount
+  PREFIX ${DISCOUNT_DEP_PATH}
+  SOURCE_DIR ${DISCOUNT_DEP_PATH}
+  CONFIGURE_COMMAND
+      ${DISCOUNT_DEP_PATH}/configure.sh --src=${DISCOUNT_DEP_PATH}
+                                        --prefix=${CMAKE_BINARY_DIR}
+                                        --libdir=${CMAKE_BINARY_DIR}
+                                        --with-fenced-code
+  BUILD_COMMAND make install
+  BUILD_IN_SOURCE 1
+)
+
+include_directories(${DISCOUNT_INCLUDE_PATH})
+
 # tell cmake where its modules can be found in our project directory
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -64,6 +84,7 @@ PACKAGES
     gee-0.8
     granite
     webkitgtk-3.0
+    discount
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
 )

@@ -39,10 +39,10 @@ namespace Gissue {
 			
 			paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
 			issue_view = new UIIssueViewer ();
-			
 			paned.add2 (issue_view);
-			tpaned.pack2 (paned, true, true);
 			
+			tpaned.pack2 (paned, true, true);
+
 			window.add (tpaned);
 		}
 
