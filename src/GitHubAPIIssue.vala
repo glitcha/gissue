@@ -12,6 +12,7 @@ namespace Gissue {
 		public string created_at;
 		public string updated_at;
 		public int comments;
+		public string body;
 
 		public string get_created_at_formated () {
 		

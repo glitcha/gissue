@@ -10,6 +10,8 @@ namespace Gissue {
 		public ArrayList<GitHubAPIIssue> issues;
 		public Gtk.Label test_label;
 
+		public signal void changed_event_signal (UIIssueRow issue_row);
+
 		public UIIssueList () {
 
 			issues_box = new Gtk.ListBox ();
@@ -21,6 +23,10 @@ namespace Gissue {
 			view_port = new Gtk.Viewport (null, null);
 			view_port.add (issues_box);
 			view_scroll.add (view_port);
+
+			issues_box.row_activated.connect ((row) => {
+				open_issue ((UIIssueRow) row);
+			});
 
 			issues_box.show_all();
 			this.show_all();
@@ -38,6 +44,10 @@ namespace Gissue {
 			
 			issues_box.show_all();
 			this.show_all();
+		}
+
+		public void open_issue (UIIssueRow issue_row) {
+			changed_event_signal (issue_row);
 		}
 	}
 }

@@ -31,9 +31,11 @@ namespace Gissue {
 
 				issue.id = 			(int) json_object.get_int_member("id");
 				issue.title = 		json_object.get_string_member ("title");
+				issue.body = 		json_object.get_string_member ("body");
 				issue.updated_at = 	json_object.get_string_member ("updated_at");
 				issue.created_at = 	json_object.get_string_member ("created_at");
 				issue.number = 		(int) json_object.get_int_member ("number");
+
 
 				issues.add(issue);
 			}

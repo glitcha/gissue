@@ -4,10 +4,10 @@ CFLAGS=-g
 AR=/usr/bin/ar
 RANLIB=/usr/bin/ranlib
 
-BINDIR=/home/colin/Source/MarkMyWords/build/bin
-MANDIR=/home/colin/Source/MarkMyWords/build/man
-LIBDIR=/home/colin/Source/MarkMyWords/build
-INCDIR=/home/colin/Source/MarkMyWords/build/include
+BINDIR=/home/colin/Source/gissue/build/bin
+MANDIR=/home/colin/Source/gissue/build/man
+LIBDIR=/home/colin/Source/gissue/build
+INCDIR=/home/colin/Source/gissue/build/include
 
 PGMS=markdown
 SAMPLE_PGMS=mkd2html makepage
@@ -31,14 +31,14 @@ install: $(PGMS) $(DESTDIR)$(BINDIR) $(DESTDIR)$(LIBDIR) $(DESTDIR)$(INCDIR)
 install.everything: install install.samples install.man
 
 install.samples: $(SAMPLE_PGMS) install $(DESTDIR)$(BINDIR)
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(MANDIR)/man1
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(MANDIR)/man1
 	for x in $(SAMPLE_PGMS); do \
 	    /usr/bin/install -s -m 755 $$x $(DESTDIR)$(BINDIR)/$(SAMPLE_PFX)$$x; \
 	    /usr/bin/install -m 444 $$x.1 $(DESTDIR)$(MANDIR)/man1/$(SAMPLE_PFX)$$x.1; \
 	done
 
 install.man:
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(MANDIR)/man3
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(MANDIR)/man3
 	/usr/bin/install -m 444 $(MAN3PAGES) $(DESTDIR)$(MANDIR)/man3
 	for x in mkd_line mkd_generateline; do \
 	    ( echo '.\"' ; echo ".so man3/mkd-line.3" ) > $(DESTDIR)$(MANDIR)/man3/$$x.3;\
@@ -49,21 +49,21 @@ install.man:
 	for x in mkd_compile mkd_css mkd_generatecss mkd_generatehtml mkd_cleanup mkd_doc_title mkd_doc_author mkd_doc_date; do \
 	    ( echo '.\"' ; echo ".so man3/mkd-functions.3" ) > $(DESTDIR)$(MANDIR)/man3/$$x.3; \
 	done
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(MANDIR)/man7
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(MANDIR)/man7
 	/usr/bin/install -m 444 markdown.7 mkd-extensions.7 $(DESTDIR)$(MANDIR)/man7
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(MANDIR)/man1
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(MANDIR)/man1
 	/usr/bin/install -m 444 markdown.1 $(DESTDIR)$(MANDIR)/man1
 
 install.everything: install install.man
 
 $(DESTDIR)$(BINDIR):
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(BINDIR)
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(BINDIR)
 
 $(DESTDIR)$(INCDIR):
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(INCDIR)
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(INCDIR)
 
 $(DESTDIR)$(LIBDIR):
-	/home/colin/Source/MarkMyWords/deps/discount/config.md $(DESTDIR)$(LIBDIR)
+	/home/colin/Source/gissue/deps/discount/config.md $(DESTDIR)$(LIBDIR)
 
 version.o: version.c VERSION
 	$(CC) $(CFLAGS) -DVERSION=\"`cat VERSION`\" -c version.c

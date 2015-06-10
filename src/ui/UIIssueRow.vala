@@ -5,7 +5,7 @@ namespace Gissue {
 		private Gtk.Label title_label;
 		private Gtk.Label number_label;
 		private Gtk.Label created_on_label;
-		private GitHubAPIIssue issue;
+		public GitHubAPIIssue issue;
 		
 		public void load(GitHubAPIIssue issue) {
 

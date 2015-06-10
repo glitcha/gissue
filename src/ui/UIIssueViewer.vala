@@ -101,5 +101,11 @@ namespace Gissue {
 
 			return html;
 		}
+
+		public void render (string mark_down) {
+			string html = process (mark_down);
+			web_view.load_string (html, "text/html",  "UTF-8", "file:///");
+			stdout.printf (html);
+		}
 	}
 }

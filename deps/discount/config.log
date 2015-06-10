@@ -10,19 +10,19 @@ checking for "const" keyword
 Checking for "inline" keyword
 defining WORD & DWORD scalar types
 looking for header WinDef.h
-test failed:  command was cc -Wno-return-type -Wno-implicit-int -c -o ngc8673.o ngc8673.c
+test failed:  command was cc -Wno-return-type -Wno-implicit-int -c -o ngc14567.o ngc14567.c
 output:
-ngc8673.c:2:20: fatal error: WinDef.h: No such file or directory
+ngc14567.c:2:20: fatal error: WinDef.h: No such file or directory
  #include <WinDef.h>
                     ^
 compilation terminated.
 offending sources:
-ngc8673.c:
+ngc14567.c:
 /* AC_CHECK_HEADERS */
 #include <WinDef.h>
 main() { }
-ngc8673.c: In function ‘main’:
-ngc8673.c:28:2: warning: incompatible implicit declaration of built-in function ‘exit’ [enabled by default]
+ngc14567.c: In function ‘main’:
+ngc14567.c:28:2: warning: incompatible implicit declaration of built-in function ‘exit’ [enabled by default]
   exit(1);
   ^
 looking for header libgen.h
@@ -30,24 +30,24 @@ looking for header pwd.h
 looking for the getpwuid function
 looking for the srandom function
 looking for the bzero function
-ngc8673.c: In function ‘main’:
-ngc8673.c:4:5: warning: incompatible implicit declaration of built-in function ‘bzero’ [enabled by default]
+ngc14567.c: In function ‘main’:
+ngc14567.c:4:5: warning: incompatible implicit declaration of built-in function ‘bzero’ [enabled by default]
      bzero((char*)0,0);
      ^
 looking for the random function
 looking for the strcasecmp function
-ngc8673.c:1:6: warning: conflicting types for built-in function ‘strcasecmp’ [enabled by default]
+ngc14567.c:1:6: warning: conflicting types for built-in function ‘strcasecmp’ [enabled by default]
  void strcasecmp();
       ^
 looking for the strncasecmp function
-ngc8673.c:1:6: warning: conflicting types for built-in function ‘strncasecmp’ [enabled by default]
+ngc14567.c:1:6: warning: conflicting types for built-in function ‘strncasecmp’ [enabled by default]
  void strncasecmp();
       ^
 looking for the fchdir function
 looking for header malloc.h
 find is /usr/bin/find
 /bin/ln exists, and ln -s works
-/home/colin/Source/MarkMyWords/deps/discount/configure.sh: 984: /home/colin/Source/MarkMyWords/deps/discount/configure.sh: AC: not found
+/home/colin/Source/gissue/deps/discount/configure.sh: 984: /home/colin/Source/gissue/deps/discount/configure.sh: AC: not found
 sed is /bin/sed
 generating Makefile
 generating version.c

@@ -20,7 +20,7 @@ namespace Gissue {
 		protected override void activate () {
 			
 			// setup gtk
-			//Gtk.Settings.get_default ().set("gtk-application-prefer-dark-theme", true);
+			Gtk.Settings.get_default ().set("gtk-application-prefer-dark-theme", true);
 
 			// load the main window
 			UIMain uimain = new UIMain ();

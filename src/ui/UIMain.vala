@@ -28,7 +28,14 @@ namespace Gissue {
 
 		private void setup_issue_list() {
 			issues_list = new UIIssueList ();
+			issues_list.changed_event_signal.connect (on_issue_list_change);
 			paned.add1 (issues_list);
+		}
+
+		private void on_issue_list_change (UIIssueRow issue_row) {
+			
+			issue_view.render (issue_row.issue.body);
+			
 		}
 
 		private void setup_paned() {
