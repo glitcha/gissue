@@ -9,7 +9,7 @@ namespace Gissue {
 		public UIIssueViewer () {
 
 			web_view = new WebKit.WebView();
-			web_view.open ("http://www.google.com");
+			web_view.open ("about:blank");
 
 			view_scroll = new Gtk.ScrolledWindow (null, null);
 			view_scroll.hscrollbar_policy = Gtk.PolicyType.NEVER;
@@ -76,6 +76,7 @@ namespace Gissue {
 		}
 
 		private string process (string raw_mk) {
+
 			string processed_mk;
 			process_frontmatter (raw_mk, out processed_mk);
 
@@ -86,14 +87,14 @@ namespace Gissue {
 			mkd.get_document (out result);
 
 			string html = "<html><head>";
-			if (prefs.render_stylesheet) {
-				html += "<style>"+render_stylesheet+"</style>";
-			}
-			if (prefs.render_syntax_highlighting) {
-				html += "<style>"+syntax_stylesheet+"</style>";
-				html += "<script>"+syntax_script+"</script>";
-				html += "<script>hljs.initHighlightingOnLoad();</script>";
-			}
+			// if (prefs.render_stylesheet) {
+			// 	html += "<style>"+render_stylesheet+"</style>";
+			// }
+			// if (prefs.render_syntax_highlighting) {
+			// 	html += "<style>"+syntax_stylesheet+"</style>";
+			// 	html += "<script>"+syntax_script+"</script>";
+			// 	html += "<script>hljs.initHighlightingOnLoad();</script>";
+			// }
 			html += "</head><body><div class=\"markdown-body\">";
 			html += result;
 			html += "</div></body></html>";

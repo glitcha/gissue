@@ -24,6 +24,9 @@ ExternalProject_Add(discount
 
 include_directories(${DISCOUNT_INCLUDE_PATH})
 
+# disable C compiler warnings
+add_definitions(-w)
+
 # tell cmake where its modules can be found in our project directory
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -33,9 +36,12 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 # what to call that directory where we install data too
 set (PKGDATADIR "${DATADIR}/gissue")
 set (EXEC_NAME "gissue")
-set (RELEASE_NAME "A hello world.")
+set (RELEASE_NAME "Release")
 set (VERSION "0.1")
-set (VERSION_INFO "whats up world")
+set (VERSION_INFO "Github issue reader.")
+set (CMAKE_C_FLAGS "-ggdb")
+set (PREFIX ${CMAKE_INSTALL_PREFIX})
+set (DOLLAR "$")
 
 # we're about to use pkgconfig to make sure dependencies are installed so let's find pkgconfig first
 find_package(PkgConfig)
@@ -54,6 +60,8 @@ pkg_check_modules (DEPS REQUIRED
 pkg_check_modules(JSON REQUIRED json-glib-1.0>=0.14)
 
 add_definitions(${DEPS_CFLAGS} ${JSON_CFLAGS} ${JSON_CFLAGS_OTHER} )
+add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
+
 link_libraries(${DEPS_LIBRARIES} ${JSON_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS} ${JSON_DIRS})
 
@@ -64,7 +72,8 @@ find_package(Vala REQUIRED)
 include(ValaVersion)
 
 # make sure it's the desired version of vala
-ensure_vala_version("0.16" MINIMUM)
+ensure_vala_version("0.29" MINIMUM)
+
 
 # files we want to compile
 include(ValaPrecompile)
@@ -89,7 +98,11 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
 )
 # tell cmake what to call the executable we just made
-add_executable(${EXEC_NAME} ${VALA_C})
+add_executable(${EXEC_NAME} ${VALA_C} ${generated_resources})
+
+add_dependencies(gissue discount)
+
+target_link_libraries(${EXEC_NAME} ${DISCOUNT_LIB_PATH})
 
 # install the binaries we just made
 install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)

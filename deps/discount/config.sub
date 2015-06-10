@@ -3,7 +3,7 @@ s;@CPPFLAGS@;;g
 s;@INSTALL@;/usr/bin/install;g
 s;@INSTALL_PROGRAM@;/usr/bin/install -s -m 755;g
 s;@INSTALL_DATA@;/usr/bin/install -m 444;g
-s;@INSTALL_DIR@;/home/colin/Source/gissue/deps/discount/config.md;g
+s;@INSTALL_DIR@;/home/colin/Source/MarkMyWords/deps/discount/config.md;g
 s;@AR@;/usr/bin/ar;g
 s;@RANLIB@;/usr/bin/ranlib;g
 s:@DWORD@:unsigned int:g
@@ -18,14 +18,14 @@ s;@GENERATED_FILES@;Makefile version.c mkdio.h;g
 s;@CC@;cc -Wno-return-type -Wno-implicit-int;g
 s;@CFLAGS@;-g;g
 s;@LDFLAGS@;-g;g
-s;@srcdir@;/home/colin/Source/gissue/deps/discount;g
-s;@prefix@;/home/colin/Source/gissue/build;g
-s;@exedir@;/home/colin/Source/gissue/build/bin;g
-s;@sbindir@;/home/colin/Source/gissue/build/sbin;g
-s;@libdir@;/home/colin/Source/gissue/build;g
-s;@libexec@;/home/colin/Source/gissue/build/lib;g
+s;@srcdir@;/home/colin/Source/MarkMyWords/deps/discount;g
+s;@prefix@;/home/colin/Source/MarkMyWords/build;g
+s;@exedir@;/home/colin/Source/MarkMyWords/build/bin;g
+s;@sbindir@;/home/colin/Source/MarkMyWords/build/sbin;g
+s;@libdir@;/home/colin/Source/MarkMyWords/build;g
+s;@libexec@;/home/colin/Source/MarkMyWords/build/lib;g
 s;@confdir@;/etc;g
-s;@mandir@;/home/colin/Source/gissue/build/man;g
+s;@mandir@;/home/colin/Source/MarkMyWords/build/man;g
 s;@FIND@;/usr/bin/find;g
 s;@LN_S@;/bin/ln -s;g
 s;@AR@;/usr/bin/ar;g
