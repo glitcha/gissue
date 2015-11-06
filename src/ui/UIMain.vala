@@ -12,13 +12,13 @@ namespace Gissue {
 		public UIIssueViewer issue_view;
 		public Gtk.HeaderBar headerbar;
 		public Gtk.TextView textview;
-		public Granite.Widgets.ThinPaned tpaned;
+		public Gtk.Paned tpaned;
 		public Granite.Widgets.SourceList sourcelist;
 		
 		public void show() {
 			setup_window();
 			setup_paned();
-			setup_issue_list();
+			//setup_issue_list();
 			window.show_all ();
 		}
 
@@ -26,32 +26,36 @@ namespace Gissue {
 			issues_list.load (issues);
 		}
 
-		private void setup_issue_list() {
-			issues_list = new UIIssueList ();
-			issues_list.changed_event_signal.connect (on_issue_list_change);
-			paned.add1 (issues_list);
-		}
-
 		private void on_issue_list_change (UIIssueRow issue_row) {
-			
 			issue_view.render (issue_row.issue.body);
-			
 		}
 
 		private void setup_paned() {
 			
-			tpaned = new Granite.Widgets.ThinPaned ();
 			sourcelist = new Granite.Widgets.SourceList ();
+			tpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+			tpaned.position = 100;
+			paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
+			paned.position = 300;
+
 			tpaned.pack1 (sourcelist, true, true);
 			
-			paned = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
+			// issues list
+			issues_list = new UIIssueList ();
+			issues_list.changed_event_signal.connect (on_issue_list_change);
+			paned.add1 (issues_list);
+
+			// issue viewer
 			issue_view = new UIIssueViewer ();
 			paned.add2 (issue_view);
-			
 			tpaned.pack2 (paned, true, true);
 
 			window.add (tpaned);
 		}
+
+		// private void setup_side_bar() {
+			
+		// }
 
 		private void setup_window() {
 

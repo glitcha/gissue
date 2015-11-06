@@ -1,6 +1,6 @@
 namespace Gissue {
 
-	public class UIIssueViewer : Gtk.Box {
+	public class UIIssueViewer : Gtk.ScrolledWindow {
 
 		public WebKit.WebView web_view;
 		public Gtk.ScrolledWindow view_scroll;
@@ -8,16 +8,21 @@ namespace Gissue {
 		
 		public UIIssueViewer () {
 
+			// this.orientation = Gtk.Orientation.VERTICAL;
+
 			web_view = new WebKit.WebView();
 			web_view.open ("about:blank");
 
-			view_scroll = new Gtk.ScrolledWindow (null, null);
-			view_scroll.hscrollbar_policy = Gtk.PolicyType.NEVER;
-			this.add (view_scroll);
+			// // view_port = new Gtk.Viewport (null, null);
+			// // view_port.add (web_view);
+					
+			// view_scroll = new Gtk.ScrolledWindow (null, null);
+			// //view_scroll.hscrollbar_policy = Gtk.PolicyType.NEVER;
+			// //view_scroll.add (view_port);	
+			// view_scroll.add (web_view);
 
-			view_port = new Gtk.Viewport (null, null);
-			view_port.add (web_view);
-			view_scroll.add (view_port);			
+			this.add (web_view);
+
 		}
 
 		/**
